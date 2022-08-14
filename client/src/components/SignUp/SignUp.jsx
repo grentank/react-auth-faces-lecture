@@ -4,22 +4,19 @@ import {
   Col, Form, FormGroup, Input, Label, Row,
 } from 'reactstrap';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
 import { useUserContext } from '../Contexts/MyContexts';
+import { userSignUp } from '../../Redux/actions/userActions';
 
 export default function SignUp() {
-  const { setUser } = useUserContext();
   const [input, setInput] = useState({});
   const [error, setError] = useState(false);
+  const dispatch = useDispatch();
   const inputHandler = (e) => setInput((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   const submitHandler = (e) => {
     e.preventDefault();
     if (input.name && input.password && input.email) {
-      axios.post('/api/user/signup', input)
-        .then((res) => setUser(res.data))
-        .catch((err) => {
-          console.log(err);
-          setError(true);
-        });
+      dispatch(userSignUp(input));
     }
   };
   return (

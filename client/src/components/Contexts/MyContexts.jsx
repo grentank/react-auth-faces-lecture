@@ -1,16 +1,16 @@
-import axios from 'axios';
 import React, {
   createContext, useState, useContext, useEffect,
 } from 'react';
+import { useDispatch } from 'react-redux';
+import { userCheck } from '../../Redux/actions/userActions';
 
 const UserContext = createContext();
 
 function UserContextProvider({ children }) {
   const [user, setUser] = useState({ });
+  const dispatch = useDispatch();
   useEffect(() => {
-    axios.post('/api/user/check')
-      .then((res) => setUser(res.data))
-      .catch(console.log);
+    dispatch(userCheck());
   }, []);
   return (
     <UserContext.Provider value={{

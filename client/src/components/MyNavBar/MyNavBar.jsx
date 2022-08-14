@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import {
   Collapse,
@@ -13,11 +14,12 @@ import {
   DropdownItem,
   NavbarText,
 } from 'reactstrap';
-import { useUserContext } from '../Contexts/MyContexts';
 
 function MyNavBar(args) {
   const [isOpen, setIsOpen] = useState(false);
-  const { user } = useUserContext();
+  // const { user } = useUserContext();
+
+  const user = useSelector((state) => state.user);
 
   const toggle = () => setIsOpen(!isOpen);
 

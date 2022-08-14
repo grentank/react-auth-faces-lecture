@@ -3,7 +3,9 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import axios from 'axios';
 import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
 import App from './App';
+import store from './Redux/store';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import UserContextProvider from './components/Contexts/MyContexts';
@@ -14,9 +16,11 @@ axios.defaults.withCredentials = true;
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
-    <UserContextProvider>
-      <App />
-    </UserContextProvider>
+    <Provider store={store}>
+      <UserContextProvider>
+        <App />
+      </UserContextProvider>
+    </Provider>
   </BrowserRouter>,
 );
 

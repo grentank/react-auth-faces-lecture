@@ -30,5 +30,6 @@ module.exports = {
     'react/jsx-props-no-spreading': 0,
     'react/jsx-no-constructed-context-values': 0,
     'no-console': 0,
+    'default-param-last': 0,
   },
 };
